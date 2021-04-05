@@ -1,7 +1,7 @@
 const express = require('express')
 const cors = require('cors');
 const MongoClient = require('mongodb').MongoClient;
-// const ObjectID = require('mongodb').ObjectID;
+const ObjectID = require('mongodb').ObjectID;
 const app = express()
 require('dotenv').config()
 
@@ -66,12 +66,19 @@ app.get('/ordered', (req, res) =>{
   })
 })
 
-// app.delete('deleteItems/:id', (req, res) => {
-//   const id = ObjectID(req.params.id);
-//   console.log('delete this item from here', id);
-//   eventCollection.findOneAndDelete({_id: id})
-//   .then(documents => res.send(!!documents.value))
-// })
+app.delete('/deleteItems/:id', (req, res) => {
+  const id = ObjectID(req.params.id);
+  productCollection.findOneAndDelete({_id: id})
+  .then((err, result) => {
+    console.log(result)
+    result.deletedCount > 0
+  })
+  // const id = ObjectID(req.params.id);
+  // console.log('delete this item from here', id);
+  // productCollection.findOneAndDelete({_id: id})
+  // .then(documents => 
+  // res.send(!!documents.value))
+})
   console.log('database connected successfully')
  
 });

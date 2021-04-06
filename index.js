@@ -14,7 +14,7 @@ console.log(process.env.DB_USER)
 
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('welcome to the fruits market database!')
 })
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.2ixqz.mongodb.net/${process.env.DB_Name}?retryWrites=true&w=majority`;
 // console.log(uri);
